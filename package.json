@@ -1,0 +1,23 @@
+{
+  "name": "crawler-ninja-uri",
+  "version": "1.0.0",
+  "description": "Utily functions used to transform, create, extract info on URIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "URIjs": "*"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christophebe/uri.ninja"
+  },
+  "bugs": {
+    "url": "https://github.com/christophebe/uri.ninja/issues"
+  },
+  "homepage": "https://github.com/christophebe/uri.ninja"
+  "author": "Christophe Lombart",
+  "license": "ISC"
+}
