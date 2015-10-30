@@ -24,7 +24,13 @@ var protocol = function(uri) {
 
 var domain = function(uri) {
 
-  return buildURI(uri).domain();
+  var toCheck = buildURI(uri);
+  //console.log("tld", toCheck.tld());
+  //console.log("domain", toCheck.domain());
+  if (toCheck.tld() == "" || toCheck.tld() == toCheck.domain()){
+    return "";
+  }
+  return toCheck.domain();
 }
 
 
@@ -32,7 +38,13 @@ var domainName = function(uri) {
 
     try {
       var name = buildURI(uri).tld("xxx").domain().toString().replace(".xxx", "");
-      return name;
+      if (name === "xxx") {
+        return "";
+      }
+      else {
+        return name;
+      }
+
     }
     catch (e) {
       // cannot extract the domain name, return domain (domainName + tld)
@@ -40,6 +52,10 @@ var domainName = function(uri) {
     }
 }
 
+var isValidDomain = function(uri) {
+    return domain(uri) != ""; 
+
+}
 
 var suffix = function(uri) {
   return buildURI(uri).suffix();
@@ -147,6 +163,7 @@ module.exports.protocol = protocol;
 module.exports.host = host;
 module.exports.domain = domain;
 module.exports.domainName = domainName;
+module.exports.isValidDomain = isValidDomain;
 module.exports.suffix = suffix;
 module.exports.linkToURI = linkToURI;
 module.exports.isRelativeOrAbsolute = isRelativeOrAbsolute;
