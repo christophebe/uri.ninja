@@ -4,7 +4,7 @@
   "description": "Functions used to transform, create, extract info on URIs",
   "main": "index.js",
   "dependencies": {
-    "URIjs": "*",
+    "urijs": "*",
     "crawler-ninja-logger": "*"
   },
   "repository": {
