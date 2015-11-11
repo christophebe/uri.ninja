@@ -24,20 +24,32 @@ var protocol = function(uri) {
 
 var domain = function(uri) {
 
-  var toCheck = buildURI(uri);
-  //console.log("tld", toCheck.tld());
-  //console.log("domain", toCheck.domain());
-  if (toCheck.tld() == "" || toCheck.tld() == toCheck.domain()){
-    return "";
-  }
-  return toCheck.domain();
+    var toCheck = buildURI(uri);
+    
+    if (toCheck.is("ip")) {
+        return "";
+    }
+
+    if (toCheck.tld() == "" || toCheck.tld() == toCheck.domain()){
+        return "";
+    }
+
+    if (toCheck.is("name")) {
+      return toCheck.domain();
+    }
+    else {
+      return "";
+    }
+
 }
 
 
 var domainName = function(uri) {
 
     try {
-      var name = buildURI(uri).tld("xxx").domain().toString().replace(".xxx", "");
+      var toCheck = buildURI(uri);
+      //console.log(uri, toCheck.domain());
+      var name = toCheck.tld("xxx").domain().toString().replace(".xxx", "");
       if (name === "xxx") {
         return "";
       }
@@ -53,7 +65,7 @@ var domainName = function(uri) {
 }
 
 var isValidDomain = function(uri) {
-    return domain(uri) != ""; 
+    return domain(uri) != "";
 
 }
 
