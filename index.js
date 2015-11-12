@@ -8,7 +8,7 @@
  */
 var log = require("crawler-ninja-logger").Logger;
 
-var URI = require('URIjs');
+var URI = require('urijs');
 
 /**
  * Get the protocol name for one uri
@@ -25,7 +25,7 @@ var protocol = function(uri) {
 var domain = function(uri) {
 
     var toCheck = buildURI(uri);
-    
+
     if (toCheck.is("ip")) {
         return "";
     }
