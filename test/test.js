@@ -19,7 +19,7 @@ describe('Test ', function() {
             assert(URI.domain("http://localhost:9999/folder/page3.html") === "");
 
             //Difficult to manage this case as an error (domain = www, tld = google)
-            assert(URI.domain("http://www.google") == "www.google");
+            assert(URI.domain("http://www.google") === "www.google");
 
             assert(URI.domainName("http://google.com") === "google");
             assert(URI.domainName("http://www.google.com") === "google");
@@ -49,7 +49,9 @@ describe('Test ', function() {
             assert(URI.host("http://localhost:9999/folder/page3.html") === "localhost:9999");
             assert(URI.host("http://127.23.45:9999/folder/page3.html") === "127.23.45:9999");
 
-
+            assert(URI.origin("http://wwww.domain.com/test.html") === "http://wwww.domain.com");
+            assert(URI.origin("http://wwww.domain.com/test/test2.html") === "http://wwww.domain.com");
+            assert(URI.origin("http://domain.com/test/test2.html") === "http://domain.com");
             done();
         });
 

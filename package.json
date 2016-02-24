@@ -1,6 +1,6 @@
 {
   "name": "crawler-ninja-uri",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Functions used to transform, create, extract info on URIs",
   "main": "index.js",
   "dependencies": {

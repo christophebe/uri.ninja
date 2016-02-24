@@ -10,19 +10,23 @@ var log = require("crawler-ninja-logger").Logger;
 
 var URI = require('urijs');
 
+function origin(uri) {
+  return buildURI(uri).origin();
+}
+
 /**
  * Get the protocol name for one uri
  *
  * @param the uri
  * @returns the uri protocol
  */
-var protocol = function(uri) {
+function protocol(uri) {
 
   return buildURI(uri).protocol();
 
 }
 
-var domain = function(uri) {
+function domain(uri) {
 
     var toCheck = buildURI(uri);
 
@@ -30,7 +34,7 @@ var domain = function(uri) {
         return "";
     }
 
-    if (toCheck.tld() == "" || toCheck.tld() == toCheck.domain()){
+    if (toCheck.tld() === "" || toCheck.tld() === toCheck.domain()){
         return "";
     }
 
@@ -44,7 +48,7 @@ var domain = function(uri) {
 }
 
 
-var domainName = function(uri) {
+function domainName(uri) {
 
     try {
       var toCheck = buildURI(uri);
@@ -64,12 +68,12 @@ var domainName = function(uri) {
     }
 }
 
-var isValidDomain = function(uri) {
-    return domain(uri) != "";
+function isValidDomain(uri) {
+    return domain(uri) !== "";
 
 }
 
-var suffix = function(uri) {
+function suffix(uri) {
   return buildURI(uri).suffix();
 }
 
@@ -79,7 +83,7 @@ var suffix = function(uri) {
  * @param the uri
  * @returns the uri host
  */
-var host = function(uri) {
+function host(uri) {
   return buildURI(uri).host();
 }
 
@@ -90,7 +94,7 @@ var host = function(uri) {
  * @param the link href (could be relative or absolute)
  * @returns the full path uri matching to the link
  */
-var linkToURI = function(pageUri, link) {
+function linkToURI(pageUri, link) {
 
     try {
       var page = buildURI(pageUri);
@@ -120,7 +124,7 @@ var linkToURI = function(pageUri, link) {
  * @param the uri to check
  * @returns true is the uri is relative or absolute
  */
-var isRelativeOrAbsolute = function (uri) {
+function isRelativeOrAbsolute(uri) {
 
     try {
         var parse = URI.parse(uri);
@@ -132,12 +136,12 @@ var isRelativeOrAbsolute = function (uri) {
       	return false;
     }
     catch (e) {
-        log.error({"url" : link, "step" : "uri.isRelativeOrAbsolute", "message" : "Impossible to check if isRelativeOrAbsolute", "options" : e});
+        log.error({"url" : uri, "step" : "uri.isRelativeOrAbsolute", "message" : "Impossible to check if isRelativeOrAbsolute", "options" : e});
         return false;
     }
 
 
-};
+}
 
 /**
  * Check if a link in an html page is external.
@@ -151,12 +155,12 @@ var isExternalLink = function (pageUri, link) {
     var page = buildURI(pageUri);
     var lk = buildURI(link);
 
-    if (lk.host() == "" ) {
+    if (lk.host() === "" ) {
       return false;
     }
 
-    return page.host() != lk.host();
-}
+    return page.host() !== lk.host();
+};
 
 
 var buildURI = function (uri) {
@@ -169,8 +173,9 @@ var buildURI = function (uri) {
     return URI("");
   }
 
-}
+};
 
+module.exports.origin = origin;
 module.exports.protocol = protocol;
 module.exports.host = host;
 module.exports.domain = domain;
