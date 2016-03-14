@@ -1,5 +1,5 @@
 /**
- * Utily functions used to transform, create, extract info on URIs
+ * Utily functions used to transform, create, extract info on URLs/URIs
  *
  * Based on the module URIjs : http://medialize.github.io/URI.js/
  *
